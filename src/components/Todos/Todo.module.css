@@ -1,0 +1,49 @@
+.todo {
+    display: flex;
+    align-items: center;
+    padding: 7px 14px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: azure;
+    border: 1px solid #defdfd;
+    color: black;
+    width: 25%;
+    justify-content: space-between
+}
+.check {
+    background: none;
+    border-color: #000;
+}
+.todo.check:hover {
+    box-shadow: none;
+}
+
+.todo:hover {
+    box-shadow: 0 0 1em;;
+}
+
+.iconCheck,
+.iconCheckDone {
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.iconCheckDone {
+    color: green;
+}
+
+.iconDel {
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 25px;
+
+}
+
+.iconCheck:hover {
+    color: green;
+}
+.iconDel:hover {
+    color:  red;
+}
+

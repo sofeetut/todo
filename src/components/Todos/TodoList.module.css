@@ -1,0 +1,19 @@
+.list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 20px;
+}
+
+.select {
+    border-radius: 5px;
+    background-color: azure;
+    border: 1px solid #defdfd;
+    color: black;
+    padding: 7px 14px;
+}
+
+.select, .title {
+    margin: 5px 5px;
+}
