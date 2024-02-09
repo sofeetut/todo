@@ -1,35 +1,33 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo, deleteTodo, setComplited } from './redux/actionCreaters'
 import TodoForm from './components/Todos/TodoForm'
 import TodoList from './components/Todos/TodoList'
 
 import './App.css'
 
 function App() {
-  const [todoList, setTodoList] = useState([])
+  const dispatch = useDispatch()
+  const select = useSelector((state) => state.todos)
 
   let countDone =
-    todoList.length && todoList.filter((todo) => todo.isComplited).length
+    select.length && select.filter((todo) => todo.isComplited).length
 
   function handleSubmit(todo) {
+    const uniqId = uuidv4()
     if (todo.length <= 20 && todo.length >= 2) {
-      setTodoList([
-        ...todoList,
-        { id: uuidv4(), text: todo, isComplited: false },
-      ])
+      const newTodo = { text: todo, id: uniqId, isComplited: false }
+      dispatch(addTodo(newTodo))
     }
   }
 
   function handleDelete(id) {
-    setTodoList(todoList.filter((todo) => todo.id !== id))
+    dispatch(deleteTodo(id))
   }
 
   function handleSetComplited(id) {
-    setTodoList(
-      todoList.map((todo) =>
-        todo.id === id ? { ...todo, isComplited: !todo.isComplited } : todo
-      )
-    )
+    dispatch(setComplited(id))
   }
 
   return (
@@ -37,11 +35,12 @@ function App() {
       <h1>Todo App</h1>
       <TodoForm onSubmit={handleSubmit} />
       <TodoList
-        todos={todoList}
+        todos={select}
+        countDone={countDone}
         onClick={handleSetComplited}
         onDelete={handleDelete}
       />
-      {!!todoList.length && (
+      {!!select.length && (
         <div>
           <h3>Done: {countDone}</h3>
         </div>

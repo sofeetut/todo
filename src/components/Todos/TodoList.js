@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Todo from './Todo'
 import styles from './TodoList.module.css'
 
-function TodoList({ todos, onClick, onDelete }) {
+function TodoList({ todos, onClick, onDelete, countDone }) {
   const [selected, setSelected] = useState('all')
 
   function handleSelect(event) {
@@ -61,10 +61,10 @@ function TodoList({ todos, onClick, onDelete }) {
         <option value='all' key='all'>
           All
         </option>
-        <option value='complited' key='complited'>
+        <option value='complited' key='complited' disabled={!countDone}>
           Done
         </option>
-        <option value='uncomplited' key='uncomplited'>
+        <option value='uncomplited' key='uncomplited' disabled={!countDone}>
           Waiting
         </option>
       </select>
