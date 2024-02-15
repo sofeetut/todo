@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Todo from './Todo'
 import styles from './TodoList.module.css'
 
-function TodoList({ todos, onClick, onDelete, countDone }) {
+function TodoList({ todos, countDone }) {
   const [selected, setSelected] = useState('all')
 
   function handleSelect(event) {
@@ -13,37 +13,14 @@ function TodoList({ todos, onClick, onDelete, countDone }) {
     switch (selected) {
       case 'complited':
         return todos.map(
-          (todo) =>
-            todo.isComplited && (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                onClick={onClick}
-                onDelete={onDelete}
-              />
-            )
+          (todo) => todo.isComplited && <Todo key={todo.id} todo={todo} />
         )
       case 'uncomplited':
         return todos.map(
-          (todo) =>
-            !todo.isComplited && (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                onClick={onClick}
-                onDelete={onDelete}
-              />
-            )
+          (todo) => !todo.isComplited && <Todo key={todo.id} todo={todo} />
         )
       default:
-        return todos.map((todo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onClick={onClick}
-            onDelete={onDelete}
-          />
-        ))
+        return todos.map((todo) => <Todo key={todo.id} todo={todo} />)
     }
   }
 
